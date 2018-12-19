@@ -7,18 +7,29 @@ public class MetodosNewt {
 	private static Scanner teclado = new Scanner(System.in);
 
 	public static void perdirNumPolinomios() {
-		System.out.println("introduce el tamaÃ±o del polimio:");
-		int numeroArrayPolinomio = teclado.nextInt();
-		System.out.println("introduce el grado del polinomio (maximo)");
-		int expMax = teclado.nextInt();
-		teclado.nextLine();
-		// esto es un array del tamaÃ±o del grado del polinomio
-		Polinomio Polinomios[] = new Polinomio[numeroArrayPolinomio];
-		rreyenarArrayPolinomio(Polinomios, expMax);
+boolean fin = false;
+		
+		do {
+			System.out.println("Introduce el tamaño del polimio: ");
+			if(teclado.hasNextInt()){
+				int numeroArrayPolinomio = teclado.nextInt();
+				teclado.nextLine();
+				System.out.println("introduce el grado del polinomio (maximo): ");
+				int expMax = teclado.nextInt();
+				
+				// esto es un array del tamaño del grado del polinomio
+				Polinomio Polinomios[] = new Polinomio[numeroArrayPolinomio];
+				rellenarArrayPolinomio(Polinomios, expMax);
+			}else {
+				teclado.nextLine();
+				System.out.println("Ha introducido un valor erroneo.");
+			}
+			
+		} while (!fin);
 	}
 
 	// este metodo rrellena todo el array con polinomios
-	public static void rreyenarArrayPolinomio(Polinomio[] polinomios, int expMax) {
+	public static void rellenarArrayPolinomio(Polinomio[] polinomios, int expMax) {
 		for (int i = 0; i < polinomios.length; i++) {
 			polinomios[i] = pedirPolinomio(expMax);
 		}
